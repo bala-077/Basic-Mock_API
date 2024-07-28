@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Mock API</h1>
+    <input type="text" id="inputBox" placeholder="Type to filter post">
+    <div id="div" class="div"></div>
+    
+    <script>
+        var inputBox = document.getElementById("inputBox");
+        var div = document.getElementById("div")
+
+        inputBox.addEventListener("keyup", async function (event) {
+            var inputValue = event.target.value.toUpperCase();
+            var image = document.getElementById("image")
+
+            console.log(inputValue);
+
+            var apiURL = "https://jsonplaceholder.typicode.com/posts";
+
+            try {
+                var response = await fetch(apiURL);
+
+                console.log(response);
+
+                if (response.ok) {
+                    var data = await response.json();
+                    div.innerHTML = ''
+                    console.log(div)
+                    for (count = 0; count < data.length; count++) {
+                        var title = await data[count].title
+                        var body = await data[count].body
+
+                        var titleContent = document.createElement("h2")
+                        var bodyContent = document.createElement("p")
+                        var newDiv = document.createElement("div")
+
+                        if (title.toUpperCase().includes(inputValue)) {
+                            titleContent.textContent = title
+                            bodyContent.textContent = body
+                            newDiv.append(titleContent)
+                            newDiv.append(bodyContent)
+                            div.append(newDiv)
+                        }
+                    }
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            } catch (err) {
+                console.error('Fetch error:', err.message);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

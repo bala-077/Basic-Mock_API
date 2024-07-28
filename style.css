@@ -1,0 +1,57 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    padding: 2% 5%;
+    flex-direction: column;
+}
+h1{
+    color: blueviolet;
+}
+input{
+    width: 100%;
+    margin-top: 20px;
+    height: 30px;
+    padding: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+}
+.div{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.div div{
+    padding: 20px;
+    flex-basis: 33%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+}
+.div div h2{
+    color: blue;
+}
+.div div p{
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .div div{
+        flex-basis: 50%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .div div{
+        flex-basis: 100%;
+        padding: 10px;
+    }
+   
+}
